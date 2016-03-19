@@ -53,7 +53,6 @@ public class DatabaseConnector {
     public void createContact(Contact contact) {
         ContentValues newValue = new ContentValues();
 
-        newValue.put(ID, contact.getId());
         newValue.put(NAME, contact.getName());
         newValue.put(SURNAME, contact.getEmail());
         newValue.put(PHONE, contact.getPhone());
@@ -95,11 +94,8 @@ public class DatabaseConnector {
     public List<Contact> getAllContacts() {
         List<Contact> contactList = new ArrayList<>();
         String selectQuery = "SELECT * FROM " + CONTACT_TABLE;
-
         Cursor cursor = database.rawQuery(selectQuery, null);
-
         open();
-
         while (cursor.moveToNext()) {
             Contact contact = new Contact();
             contact.setId(Integer.parseInt(cursor.getString(0)));

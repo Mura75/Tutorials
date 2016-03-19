@@ -9,4 +9,14 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/lvContact" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:id="@+id/fabAdd"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="8dp"
+        android:layout_marginRight="8dp" />
 </RelativeLayout>

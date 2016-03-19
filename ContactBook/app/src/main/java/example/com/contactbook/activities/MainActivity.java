@@ -1,8 +1,12 @@
 package example.com.contactbook.activities;
 
+import android.content.Intent;
 import android.os.AsyncTask;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
 import android.widget.ListView;
 
 import java.util.List;
@@ -20,6 +24,8 @@ public class MainActivity extends AppCompatActivity {
 
     ContactAdapter contactAdapter;
 
+    FloatingActionButton fabAdd;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,6 +33,21 @@ public class MainActivity extends AppCompatActivity {
 
         lvContact = (ListView)findViewById(R.id.lvContact);
 
+        fabAdd = (FloatingActionButton)findViewById(R.id.fabAdd);
+
+        fabAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, CreateContactActivity.class);
+                startActivity(intent);
+            }
+        });
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         new GetAllUsers().execute();
     }
 
@@ -45,6 +66,7 @@ public class MainActivity extends AppCompatActivity {
         protected Void doInBackground(Void... params) {
             connector.open();
             contactList = connector.getAllContacts();
+            Log.d("All_my_contancts", contactList.toString());
             return null;
         }
 
