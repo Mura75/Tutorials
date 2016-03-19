@@ -1,0 +1,8 @@
+http://developer.android.com/intl/ru/reference/android/database/sqlite/SQLiteDatabase.html
+http://developer.android.com/intl/ru/reference/android/database/sqlite/SQLiteDatabase.html#update%28java.lang.String,%20android.content.ContentValues,%20java.lang.String,%20java.lang.String[]%29
+http://stackoverflow.com/questions/2662927/android-sqlite-nullcolumnhack-parameter-in-insert-replace-methods
+https://www.google.ru/url?sa=t&rct=j&q=&esrc=s&source=web&cd=2&sqi=2&ved=0ahUKEwjWudSTuMzLAhWiAJoKHW_oDqwQFggoMAE&url=http%3A%2F%2Fdeveloper.alexanderklimov.ru%2Fandroid%2Ftheory%2Fcursor.php&usg=AFQjCNGCnl9yGmALnIuZRAl0MN95xbpy_Q&bvm=bv.117218890,d.bGs&cad=rjt
+http://developer.alexanderklimov.ru/android/theory/cursor.php
+http://startandroid.ru/ru/uroki/vse-uroki-spiskom/76-urok-36-sqlite-podrobnee-pro-metod-query-uslovie-sortirovka-gruppirovka
+http://stackoverflow.com/questions/10507005/how-to-use-string-selectionargs-in-sqlitedatabase-query
+http://startandroid.ru/ru/uroki/vse-uroki-spiskom/149-urok-86-asynctask-znakomstvo-neslozhnyj-primer.html
