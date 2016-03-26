@@ -69,7 +69,7 @@ public class DatabaseConnector {
         ContentValues updateValue = new ContentValues();
 
         updateValue.put(NAME, contact.getName());
-        updateValue.put(SURNAME, contact.getEmail());
+        updateValue.put(SURNAME, contact.getSurname());
         updateValue.put(PHONE, contact.getPhone());
         updateValue.put(EMAIL, contact.getEmail());
         updateValue.put(CITY, contact.getCity());

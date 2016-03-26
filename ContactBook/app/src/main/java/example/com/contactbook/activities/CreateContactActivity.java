@@ -19,7 +19,7 @@ public class CreateContactActivity extends AppCompatActivity {
 
     Button buttonSave;
 
-    private int contactId;
+    private int contactId = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,8 +80,7 @@ public class CreateContactActivity extends AppCompatActivity {
     }
 
 
-    private class CreateContact
-            extends AsyncTask<Void, Void, Void> {
+    private class CreateContact extends AsyncTask<Void, Void, Void> {
 
         DatabaseConnector connector =
                 new DatabaseConnector(CreateContactActivity.this);
@@ -95,15 +94,28 @@ public class CreateContactActivity extends AppCompatActivity {
 
         @Override
         protected Void doInBackground(Void... params) {
-            connector.open();
-            Contact contact = new Contact();
-            contact.setName(name);
-            contact.setSurname(surname);
-            contact.setPhone(phone);
-            contact.setEmail(email);
-            contact.setCity(city);
-            contact.setAddress(address);
-            connector.createContact(contact);
+            if (contactId != -1) {
+                connector.open();
+                Contact contact = connector.getContactById(contactId);
+                contact.setName(name);
+                contact.setSurname(surname);
+                contact.setPhone(phone);
+                contact.setEmail(email);
+                contact.setCity(city);
+                contact.setAddress(address);
+                connector.updateContact(contact);
+            }
+            else {
+                connector.open();
+                Contact contact = new Contact();
+                contact.setName(name);
+                contact.setSurname(surname);
+                contact.setPhone(phone);
+                contact.setEmail(email);
+                contact.setCity(city);
+                contact.setAddress(address);
+                connector.createContact(contact);
+            }
             return null;
         }
 
