@@ -1,6 +1,8 @@
 package example.com.contactbook.activities;
 
+import android.content.DialogInterface;
 import android.os.AsyncTask;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -9,6 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import example.com.contactbook.R;
 import example.com.contactbook.database.DatabaseConnector;
@@ -54,6 +57,25 @@ public class CreateContactActivity extends AppCompatActivity {
     }
 
 
+    private void showDialog() {
+        AlertDialog.Builder alert = new AlertDialog.Builder(CreateContactActivity.this);
+        alert.setMessage("Do You want delete contact")
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                        new DeleteContact().execute();
+                    }
+                })
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                })
+                .show();
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.create_contact_menu, menu);
@@ -63,7 +85,7 @@ public class CreateContactActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.action_delete) {
-            new DeleteContact().execute();
+            showDialog();
             return true;
         }
         return super.onOptionsItemSelected(item);
@@ -88,7 +110,14 @@ public class CreateContactActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
-            finish();
+            if (contactId != -1) {
+                finish();
+            }
+            else {
+                Toast.makeText(CreateContactActivity.this,
+                        "Nothing to delete!",
+                        Toast.LENGTH_SHORT).show();
+            }
         }
     }
 
