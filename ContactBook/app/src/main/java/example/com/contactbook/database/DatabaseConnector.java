@@ -54,7 +54,7 @@ public class DatabaseConnector {
         ContentValues newValue = new ContentValues();
 
         newValue.put(NAME, contact.getName());
-        newValue.put(SURNAME, contact.getEmail());
+        newValue.put(SURNAME, contact.getSurname());
         newValue.put(PHONE, contact.getPhone());
         newValue.put(EMAIL, contact.getEmail());
         newValue.put(CITY, contact.getCity());
@@ -89,6 +89,38 @@ public class DatabaseConnector {
                 ID + "=?",
                 new String[]{String.valueOf(contact.getId())});
         close();
+    }
+
+
+    public Contact getContactById(int id) {
+        open();
+        Contact contact = null;
+        String[] columns = new String[]{ID, NAME, SURNAME,
+                                        PHONE, EMAIL, CITY, ADDRESS};
+
+        Cursor cursor = database.query(CONTACT_TABLE,
+                columns,
+                ID + "=?",
+                new String[] { String.valueOf(id) },
+                null,
+                null,
+                null,
+                null);
+
+        if (cursor != null) {
+            cursor.moveToFirst();
+        }
+
+        contact = new Contact();
+        contact.setId(cursor.getInt(0));
+        contact.setName(cursor.getString(1));
+        contact.setSurname(cursor.getString(2));
+        contact.setPhone(cursor.getString(3));
+        contact.setEmail(cursor.getString(4));
+        contact.setCity(cursor.getString(5));
+        contact.setAddress(cursor.getString(6));
+
+        return contact;
     }
 
     public List<Contact> getAllContacts() {

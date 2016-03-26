@@ -1,8 +1,10 @@
 package example.com.contactbook.activities;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -17,6 +19,8 @@ public class CreateContactActivity extends AppCompatActivity {
 
     Button buttonSave;
 
+    private int contactId;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,6 +34,14 @@ public class CreateContactActivity extends AppCompatActivity {
         etAddress = (EditText)findViewById(R.id.etAddress);
         buttonSave = (Button)findViewById(R.id.buttonSave);
 
+        Log.d("My_intent", getIntent().getIntExtra("contact_id", 0) + "");
+
+        if (getIntent().hasExtra("contact_id")) {
+            contactId = getIntent().getIntExtra("contact_id", -1);
+            new ShowContactData().execute();
+        }
+
+
         buttonSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -37,6 +49,34 @@ public class CreateContactActivity extends AppCompatActivity {
                 finish();
             }
         });
+    }
+
+
+    private class ShowContactData extends AsyncTask<Void, Void, Void> {
+        Contact contact;
+
+        DatabaseConnector connector =
+                new DatabaseConnector(CreateContactActivity.this);
+
+        @Override
+        protected Void doInBackground(Void... params) {
+            connector.open();
+            contact = connector.getContactById(contactId);
+            Log.d("Contact_info", contact.toString());
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            etName.setText(contact.getName());
+            etSurname.setText(contact.getSurname());
+            etPhone.setText(contact.getPhone());
+            etEmail.setText(contact.getEmail());
+            etCity.setText(contact.getCity());
+            etAddress.setText(contact.getAddress());
+            connector.close();
+        }
     }
 
 
@@ -73,4 +113,5 @@ public class CreateContactActivity extends AppCompatActivity {
             connector.close();
         }
     }
+
 }
