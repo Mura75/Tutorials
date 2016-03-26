@@ -1,10 +1,11 @@
 package example.com.contactbook.activities;
 
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -45,12 +46,51 @@ public class CreateContactActivity extends AppCompatActivity {
         buttonSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new CreateContact().execute();
+                new CreateOrUpdateContact().execute();
                 finish();
             }
         });
+
     }
 
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.create_contact_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.action_delete) {
+            new DeleteContact().execute();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+
+    private class DeleteContact extends AsyncTask<Void, Void, Void> {
+
+        DatabaseConnector connector = new DatabaseConnector(CreateContactActivity.this);
+
+        @Override
+        protected Void doInBackground(Void... params) {
+            connector.open();
+            if (contactId != -1) {
+                Contact contact = connector.getContactById(contactId);
+                connector.deleteContact(contact);
+            }
+            connector.close();
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            finish();
+        }
+    }
 
     private class ShowContactData extends AsyncTask<Void, Void, Void> {
         Contact contact;
@@ -80,7 +120,7 @@ public class CreateContactActivity extends AppCompatActivity {
     }
 
 
-    private class CreateContact extends AsyncTask<Void, Void, Void> {
+    private class CreateOrUpdateContact extends AsyncTask<Void, Void, Void> {
 
         DatabaseConnector connector =
                 new DatabaseConnector(CreateContactActivity.this);
