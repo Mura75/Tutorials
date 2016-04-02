@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 
 import ant.com.fragmentsapp.fragments.FirstFragment;
+import ant.com.fragmentsapp.fragments.RecyclerFragment;
 
 public class TestActivity extends AppCompatActivity {
 
@@ -15,7 +16,7 @@ public class TestActivity extends AppCompatActivity {
 
         Log.d("Test_rot_act", "onCreate");
 
-        FirstFragment fragment = new FirstFragment();
+        RecyclerFragment fragment = new RecyclerFragment();
 
         getSupportFragmentManager()
                 .beginTransaction()
