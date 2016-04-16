@@ -15,9 +15,6 @@ import android.widget.Toast;
 import ant.com.fragmentsapp.MainActivity;
 import ant.com.fragmentsapp.R;
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class FirstFragment extends Fragment {
 
     Button button;
