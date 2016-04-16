@@ -1,9 +1,10 @@
-package ant.com.fragmentsapp;
+package ant.com.fragmentsapp.activities;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 
+import ant.com.fragmentsapp.R;
 import ant.com.fragmentsapp.fragments.CinemaFragment;
 import ant.com.fragmentsapp.fragments.FirstFragment;
 import ant.com.fragmentsapp.fragments.RecyclerFragment;

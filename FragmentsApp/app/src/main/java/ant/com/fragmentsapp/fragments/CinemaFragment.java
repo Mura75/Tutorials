@@ -75,40 +75,40 @@ public class CinemaFragment extends Fragment {
 
                         if (result != null) {
 
-//                            Gson gson = new Gson();
-//                            Type listType = new TypeToken<List<Cinema>>(){}.getType();
-//                            List<Cinema> cinemas = (List<Cinema>)gson.fromJson(result, listType);
-//                            cinemaList.addAll(cinemas);
-//                            Log.d("Cinema_list", cinemaList.toString());
-//                            cinemaAdapter.notifyDataSetChanged();
+                            Gson gson = new Gson();
+                            Type listType = new TypeToken<List<Cinema>>(){}.getType();
+                            List<Cinema> cinemas = (List<Cinema>)gson.fromJson(result, listType);
+                            cinemaList.addAll(cinemas);
+                            Log.d("Cinema_list", cinemaList.toString());
+                            cinemaAdapter.notifyDataSetChanged();
 
-                            try {
-                                JSONArray array = new JSONArray(result.toString());
-
-                                Log.d("My_array", array.toString());
-
-                                for (int i = 0; i < array.length(); i++) {
-
-                                    JSONObject object = array.getJSONObject(i);
-
-                                    Log.d("My_obj", object.toString());
-
-                                    Cinema cinema = new Cinema();
-
-                                    cinema.setFullName(object.getString("FullName"));
-                                    cinema.setMall(object.getString("Mall"));
-                                    cinema.setBuilding(object.getString("Building"));
-
-                                    Log.d("My_cinema", cinema.toString());
-
-                                    cinemaList.add(cinema);
-
-                                    Log.d("My_list", cinemaList.toString());
-                                }
-
-                            } catch (JSONException e1) {
-                                e1.printStackTrace();
-                            }
+//                            try {
+//                                JSONArray array = new JSONArray(result.toString());
+//
+//                                Log.d("My_array", array.toString());
+//
+//                                for (int i = 0; i < array.length(); i++) {
+//
+//                                    JSONObject object = array.getJSONObject(i);
+//
+//                                    Log.d("My_obj", object.toString());
+//
+//                                    Cinema cinema = new Cinema();
+//
+//                                    cinema.setFullName(object.getString("FullName"));
+//                                    cinema.setMall(object.getString("Mall"));
+//                                    cinema.setBuilding(object.getString("Building"));
+//
+//                                    Log.d("My_cinema", cinema.toString());
+//
+//                                    cinemaList.add(cinema);
+//
+//                                    Log.d("My_list", cinemaList.toString());
+//                                }
+//
+//                            } catch (JSONException e1) {
+//                                e1.printStackTrace();
+//                            }
 
                             Log.d("My_list", cinemaList.toString());
 

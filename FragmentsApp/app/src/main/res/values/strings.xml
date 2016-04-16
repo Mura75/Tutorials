@@ -3,4 +3,6 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="google_map_api_key">AIzaSyDCHFjTtn863nklmiLSNUm7zffzG4VE8yM</string>
 </resources>

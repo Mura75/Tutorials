@@ -1,6 +1,8 @@
 package ant.com.fragmentsapp.adapters;
 
 import android.content.Context;
+import android.content.Intent;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.TextureView;
@@ -11,6 +13,7 @@ import android.widget.TextView;
 import java.util.List;
 
 import ant.com.fragmentsapp.R;
+import ant.com.fragmentsapp.activities.CinemaActivity;
 import ant.com.fragmentsapp.models.Cinema;
 
 /**
@@ -36,13 +39,29 @@ public class CinemaAdapter extends RecyclerView.Adapter<CinemaAdapter.CityViewHo
     }
 
     @Override
-    public void onBindViewHolder(CityViewHolder holder, int position) {
+    public void onBindViewHolder(final CityViewHolder holder, int position) {
 
-        Cinema cinema = cinemaList.get(position);
+        final Cinema cinema = cinemaList.get(position);
 
         holder.tvCinemaName.setText(cinema.getFullName());
         holder.tvCinemaMall.setText(cinema.getMall());
         holder.tvCinemaBuilding.setText(cinema.getBuilding());
+
+        holder.cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(holder.context, CinemaActivity.class);
+                intent.putExtra("full_name", cinema.getFullName());
+                intent.putExtra("mall", cinema.getMall());
+                intent.putExtra("building", cinema.getBuilding());
+                intent.putExtra("avenue", cinema.getAvenue());
+                intent.putExtra("phone", cinema.getPhone());
+                intent.putExtra("website", cinema.getWebsite());
+                intent.putExtra("city", cinema.getCity());
+                intent.putExtra("geo", cinema.getGeoposition());
+                holder.context.startActivity(intent);
+            }
+        });
 
     }
 
@@ -57,7 +76,7 @@ public class CinemaAdapter extends RecyclerView.Adapter<CinemaAdapter.CityViewHo
         TextView tvCinemaName;
         TextView tvCinemaMall;
         TextView tvCinemaBuilding;
-
+        CardView cardView;
 
         public CityViewHolder(View itemView) {
             super(itemView);
@@ -65,6 +84,7 @@ public class CinemaAdapter extends RecyclerView.Adapter<CinemaAdapter.CityViewHo
             tvCinemaName = (TextView)itemView.findViewById(R.id.tvCinemaName);
             tvCinemaMall = (TextView)itemView.findViewById(R.id.tvCinemaMall);
             tvCinemaBuilding = (TextView)itemView.findViewById(R.id.tvCinemaBuilding);
+            cardView = (CardView)itemView.findViewById(R.id.cardView);
         }
     }
 }

@@ -10,7 +10,7 @@ public class Cinema {
     @SerializedName("Phone")
     private String phone;
 
-    @SerializedName("Geopositon")
+    @SerializedName("Geoposition")
     private String geoposition;
 
     @SerializedName("Website")

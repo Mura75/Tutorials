@@ -1,22 +1,19 @@
-package ant.com.fragmentsapp;
+package ant.com.fragmentsapp.activities;
 
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.Toast;
 
-import com.mikepenz.materialdrawer.AccountHeader;
-import com.mikepenz.materialdrawer.AccountHeaderBuilder;
 import com.mikepenz.materialdrawer.Drawer;
 import com.mikepenz.materialdrawer.DrawerBuilder;
 import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
-import com.mikepenz.materialdrawer.model.ProfileDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 
+import ant.com.fragmentsapp.R;
 import ant.com.fragmentsapp.fragments.CinemaFragment;
-import ant.com.fragmentsapp.fragments.FirstFragment;
-import ant.com.fragmentsapp.fragments.SecondFragment;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -69,10 +66,11 @@ public class MainActivity extends AppCompatActivity {
                 .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
                     @Override
                     public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
+                        Toast.makeText(MainActivity.this, position + "", Toast.LENGTH_SHORT).show();
                         if (position == 1) {
-                            //createFragment(new FirstFragment());
-                        } else if (position == 2) {
                             createFragment(new CinemaFragment());
+                        } else if (position == 2) {
+
                         }
                         return false;
                     }

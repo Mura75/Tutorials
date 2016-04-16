@@ -12,7 +12,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
 
-import ant.com.fragmentsapp.MainActivity;
+import ant.com.fragmentsapp.activities.MainActivity;
 import ant.com.fragmentsapp.R;
 
 public class FirstFragment extends Fragment {
